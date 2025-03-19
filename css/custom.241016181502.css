@@ -851,7 +851,58 @@ h6,.h6 {
 
 .ed-slider-items li img,#content .ed-slider-items li img {
     vertical-align: top;
-    max-width: 100%
+    max-width: 100%;
+    width: 100%;
+    /* height: 500px; */
+    object-fit: cover
+}
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%
+}
+
+.ed-slider-items {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%
+}
+
+.ed-slider-item {
+    flex: 0 0 100%;
+    width: 100%
+}
+
+.slider-controls #prevBtn a,
+.slider-controls #nextBtn a {
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    background: rgb(77 118 73);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 40px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-controls #prevBtn {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2
+}
+
+.slider-controls #nextBtn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2
 }
 
 .ed-slider-text {
@@ -932,7 +983,7 @@ h6,.h6 {
 }
 
 .wv-content>.inner,.wv-spacer>.inner {
-    padding-top: 5rem;
+    padding-top: 2rem;
     padding-bottom: 5rem
 }
 

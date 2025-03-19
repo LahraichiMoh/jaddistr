@@ -642,6 +642,12 @@ h6,.h6 {
     background-position: center center
 }
 
+#ed-402925672 .background-image-holder {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important
+}
+
 .wv-bg.ed-image.wv-tile .background-image-holder {
     background-size: auto;
     background-repeat: repeat
@@ -5006,9 +5012,9 @@ body.open-menu .ed-element.preset-menu-v2-centered .menu-trigger .menu-trigger-b
 @media screen and (max-width: 35.9375rem) {
     .ed-element.preset-partners-default>.inner>.ed-image,.ed-element.preset-partners-default>.inner>.ed-text {
         margin:1rem;
-        flex: 0 1 calc(100% - 2 * 1rem);
+        flex: 0 1 calc(50% - 2 * 1rem);
         flex-grow: 0;
-        max-width: calc(100% - 2 * 1rem)
+        max-width: calc(50% - 2 * 1rem)
     }
 }
 

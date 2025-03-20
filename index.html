@@ -1447,53 +1447,54 @@
               
 
             <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    emailjs.init("JkQtgIiQKUMV9IpW8"); // تهيئة EmailJS بالمفتاح العام
-            
-                    document.getElementById("myForm").addEventListener("submit", function (event) {
-                        event.preventDefault(); // منع إعادة تحميل الصفحة
-            
-                        let submitButton = document.getElementById("submit");
-            
-                        // التقاط بيانات النموذج
-                        let company = document.getElementById("company").value.trim();
-                        let name = document.getElementById("name").value.trim();
-                        let phone = document.getElementById("phone").value.trim();
-                        let email = document.getElementById("email").value.trim();
-                        let message = document.getElementById("message").value.trim();
-            
-                        // التحقق من الحقول الفارغة
-                        if (!company || !name || !phone || !email || !message) {
-                            alert("❌ Tous les champs sont obligatoires !");
-                            return; // إيقاف الإرسال
-                        }
-            
-                        // تشغيل الأنيميشن عند الإرسال
-                        submitButton.classList.add("loading");
-                        submitButton.innerHTML = `<span class="loader"></span> Envoi...`;
-            
-                        let formData = { company, name, phone, email, message };
-            
-                        // إرسال البيانات عبر EmailJS
-                        emailjs.send("service_9ygcw5n", "template_h2vke4m", formData)
-                            .then(function (response) {
-                                alert("✅ Message envoyé avec succès !");
-                                document.getElementById("myForm").reset(); // إعادة تعيين النموذج
-            
-                                submitButton.classList.remove("loading");
-                                submitButton.innerHTML = "Envoyer";
-                            })
-                            .catch(function (error) {
-                                alert("❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer.");
-                                console.error("EmailJS Error:", error);
-            
-                                submitButton.classList.remove("loading");
-                                submitButton.innerHTML = "Envoyer";
-                            });
-                    });
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        emailjs.init("JkQtgIiQKUMV9IpW8"); // تهيئة EmailJS بالمفتاح العام
+
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            let submitButton = document.getElementById("submit");
+
+            // التقاط بيانات النموذج
+            let company = document.getElementById("company").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            // التحقق من الحقول الفارغة
+            if (!company || !name || !phone || !email || !message) {
+                alert("❌ Tous les champs sont obligatoires !");
+                return; // إيقاف الإرسال
+            }
+
+            // تشغيل الأنيميشن عند الإرسال
+            submitButton.classList.add("loading");
+            submitButton.innerHTML = `<span class="loader"></span> Envoi...`;
+
+            let formData = { company, name, phone, email, message };
+
+            // إرسال البيانات عبر EmailJS
+            emailjs.send("service_9ygcw5n", "template_h2vke4m", formData)
+                .then(function (response) {
+                    alert("✅ Message envoyé avec succès !");
+                    document.getElementById("myForm").reset(); // إعادة تعيين النموذج
+
+                    submitButton.classList.remove("loading");
+                    submitButton.innerHTML = "Envoyer";
+                })
+                .catch(function (error) {
+                    alert("❌ Erreur lors de l'envoi du formulaire. Veuillez réessayer.");
+                    console.error("EmailJS Error:", error);
+
+                    submitButton.classList.remove("loading");
+                    submitButton.innerHTML = "Envoyer";
                 });
-            </script>
+        });
+    });
+</script>
+
             
 
 

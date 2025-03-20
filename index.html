@@ -51,6 +51,50 @@
     <link rel="stylesheet" media="print" onload="this.media='all'" href="g/fonts%EF%B9%96family=Open+Sans%EF%B9%95300%EF%BD%9CRoboto+Slab%EF%B9%95700,300&amp;subset=latin&amp;display=swap.css"
     />
     <style>
+       .submit-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+  }
+
+  .submit-btn.loading {
+      background-color: #0056b3;
+      cursor: not-allowed;
+  }
+
+  /* تأثير التحميل */
+  .loader {
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+        .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+  }
       #ed-402926203 { flex-basis: auto; order: 0; } #ed-402926197 > .inner {
       align-items: center; place-content: center flex-start; } #ed-402926212
       { flex-basis: auto; order: 0; } @media screen and (max-width: 975px) {
@@ -1377,26 +1421,26 @@
               </div>
             </div>
             <div class="ed-element ed-form-container footer-hel-box" id="ed-402926134">
-              <form method="POST" action="">
+              <form id="myForm">
                 <div class="ed-element ed-form-input" id="ed-402926137">
                   <input placeholder="Société" type="text" name="company"
-                  value="" id="company">
+                   id="company">
                 </div>
                 <div class="ed-element ed-form-input" id="ed-402926140">
                   <input placeholder="Nom" type="text" name="name"
-                  value="" id="name">
+                   id="name">
                 </div>
                 <div class="ed-element ed-form-input" id="ed-402926143">
                   <input placeholder="Téléphone" type="text" name="phone"
-                  value="" id="phone">
+                   id="phone">
                 </div>
                 <div class="ed-element ed-form-email" id="ed-402926146">
                   <input placeholder="Email" type="email" name="email"
-                  value="" id="email">
+                   id="email">
                 </div>
                 <div class="ed-element ed-form-textarea" id="ed-402926149">
-                  <textarea rows="4" cols="30" placeholder="Message" name="form_402926134[ed-f-402926149]"
-                  id="form_402926134_ed-f-402926149">
+                  <textarea rows="4" cols="30" placeholder="Message" name="message"
+                  id="message">
                   </textarea>
                 </div>
                
@@ -1409,6 +1453,56 @@
                 <input type="checkbox" name="news" checked="checked" value="1" style="display: none;">
                 <input type="checkbox" name="tos" value="1" style="display: none;">
               </form>
+              
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
+<script>
+  (function() {
+      emailjs.init("JkQtgIiQKUMV9IpW8"); // تهيئة EmailJS بالمفتاح العام
+  })();
+
+  document.getElementById("submit").addEventListener("click", function(event) {
+      event.preventDefault(); // منع إعادة تحميل الصفحة
+
+      let submitButton = document.getElementById("submit");
+
+      // تشغيل الأنيميشن عند الإرسال
+      submitButton.classList.add("loading");
+      submitButton.innerHTML = `<span class="loader"></span> Envoi...`;
+
+      // التقاط بيانات النموذج
+      let formData = {
+          company: document.getElementById("company").value,
+          name: document.getElementById("name").value,
+          phone: document.getElementById("phone").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value
+      };
+
+
+      emailjs.send("service_9ygcw5n", "template_h2vke4m", formData)
+      .then(function(response) {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("✅ Message envoyé avec succès! "); // تنبيه نجاح
+          document.getElementById("myForm").reset(); // إعادة تعيين النموذج
+
+
+          submitButton.classList.remove("loading");
+          submitButton.innerHTML = "Envoyer";
+      }, function(error) {
+          console.log("FAILED...", error);
+          alert("❌ Une erreur s'est produite lors de l'envoi, veuillez réessayer.."); // تنبيه خطأ
+
+
+          submitButton.classList.remove("loading");
+          submitButton.innerHTML = "Envoyer";
+      });
+  });
+</script>
+
+
             </div>
           </div>
         </div>

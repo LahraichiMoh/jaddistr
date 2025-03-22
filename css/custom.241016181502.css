@@ -4530,11 +4530,11 @@ body.open-menu .ed-element.preset-menu-v2-centered .menu-trigger .menu-trigger-b
 }
 
 .ed-element.preset-icon-accordion-default-products .icon-accordion-trigger>.inner {
-    background: rgb(34 68 19 / 70%)
+    background: rgb(34 68 19 / 55%)
 }
 
 .ed-element.preset-icon-accordion-default-products .icon-accordion-trigger>.inner.active,.ed-element.preset-icon-accordion-default-products .icon-accordion-trigger>.inner:hover {
-    background: rgb(34 68 19 / 70%)
+    background: rgb(34 68 19 / 55%)
 }
 
 @media screen and (max-width: 47.9375rem) {
